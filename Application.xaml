@@ -5,10 +5,126 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:registration"
         mc:Ignorable="d"
-        Title="Mozijegy-foglalas" Height="850" Width="600"
+        Title="Mozijegy-foglalas" Height="650" Width="600"
         Background="#F1F3F6" Foreground="White"
         WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Window.Resources>
         
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#275D91"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#30343B"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        
+        
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#AAB3BF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="8"/>
+            
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="LightYellow"/>
+                    <Setter Property="BorderBrush" Value="#275D91"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#AAB3BF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#275D91"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- 9. feladat -->
+
+
+        <Style TargetType="CheckBox">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#30343B"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        
+        
+        <Style x:Key="vipInfoStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="DarkGreen"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChecked, ElementName=vipCheckBox}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <Grid Margin="40">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Mozijegy-foglalás"/>  
+        
+        <Label Grid.Row="1" Grid.Column="0" Content="Teljes név:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="customerInput"/>
+        
+        <Label Grid.Row="2" Grid.Column="0" Content="Film címe:"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="movieComboBox">
+            <ComboBoxItem Content="Pókember 2"/>
+            <ComboBoxItem Content="Avatar 2"/>
+            <ComboBoxItem Content="Mephisto"/>
+            <ComboBoxItem Content="Ponyvaregény"/>
+            <ComboBoxItem Content="Oppenheimer"/>
+        </ComboBox>
+        
+        <Label Grid.Row="3" Grid.Column="0" Content="Jegyek száma:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="ticketInput"/>
+
+        <CheckBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="vipCheckBox" Content="VIP ülőhelyet kérek"/>
+        <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="vipInfo" Content="VIP jegy kiválasztva!" Style="{StaticResource vipInfoStyle}"/>
+        
+        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" x:Name="bookingButton" Content="Foglalás"/>
+        <Label Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" x:Name="statusLabel"/>
+
     </Grid>
 </Window>
